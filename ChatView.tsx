@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Message } from '../types';
-import { generateWojtekResponse, wojtekResponses } from '../geminiService';
+import { Message } from './types';
+import { generateWojtekResponse, wojtekResponses } from './geminiService';
 
 const ChatView: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
