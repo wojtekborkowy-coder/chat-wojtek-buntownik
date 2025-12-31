@@ -25,7 +25,7 @@ const ChatView: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    const userMsg: Message = { role: 'user', text: input, timestamp: new Date() };
+        const userMsg: Message = { role: 'user', text: input, timestamp: new Date() };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
     setIsLoading(true);
@@ -38,7 +38,14 @@ const ChatView: React.FC = () => {
       const modelMsg: Message = { role: 'model', text: response, timestamp: new Date() };
       setMessages(prev => [...prev, modelMsg]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'model', text: "Wojtek właśnie dostał *Kopfschmerzen* od Twojego pytania. Idź na kawusię albo zobacz mój szaszłyk w galerii. Reset!", timestamp: new Date() }]);
+      // Losujemy jedną z gotowych odpowiedzi z listy, zamiast wyświetlać w kółko to samo
+      const randomFallback = wojtekResponses[Math.floor(Math.random() * wojtekResponses.length)];
+      
+      setMessages(prev => [...prev, { 
+        role: 'model', 
+        text: `[SYSTEMOWY RESET WOJTKA]: ${randomFallback}`, 
+        timestamp: new Date() 
+      }]);
     } finally {
       setIsLoading(false);
     }

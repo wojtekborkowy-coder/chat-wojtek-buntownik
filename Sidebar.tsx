@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewMode } from './types'; // Poprawiony import (jedna kropka)
+import { ViewMode } from './types';
 
 interface SidebarProps {
   activeView: ViewMode;
